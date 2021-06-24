@@ -14,6 +14,7 @@ namespace ArrayPractice
     {
         static Random rand = new Random();
         const int LabelMax = 10;
+        int visible = 0;
         int []vx = new int[LabelMax];
         int []vy = new int[LabelMax];
         Label[] labels = new Label[LabelMax];
@@ -170,6 +171,7 @@ namespace ArrayPractice
                 && (fpos.Y < labels[i].Bottom))
                 {
                     labels[i].Visible = false;
+                    visible++;
                 }
             }
             /*if ((fpos.X >= label1.Left)
@@ -220,14 +222,16 @@ namespace ArrayPractice
             {
                 timer1.Enabled = false;
             }*/
-            if(score<0)
+            /*if(score<0)
             {
                 for(int i =0;i<LabelMax;i++)
                 {
                     labels[i].Visible = false;
                 }
                 timer1.Enabled = false;
-            }
+            }*/
+            if (visible == LabelMax)
+                timer1.Enabled = false;
         }
         private void label1_Click(object sender, EventArgs e)
         {
