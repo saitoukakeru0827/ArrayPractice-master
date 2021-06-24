@@ -232,5 +232,18 @@ namespace ArrayPractice
         {
 
         }
+
+        private void scoreLabel_Click(object sender, EventArgs e)
+        {
+            for(int i =0;i<10;i++)
+            {
+                if (i == 2)
+                    continue;
+                MessageBox.Show("i==2のあと");
+                if (i == 5)
+                    break;
+                MessageBox.Show("" + i);
+            }
+        }
     }
 }
