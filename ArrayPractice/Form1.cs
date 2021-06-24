@@ -13,21 +13,33 @@ namespace ArrayPractice
     public partial class Form1 : Form
     {
         static Random rand = new Random();
-        int []vx = new int[3];
-        int []vy = new int[3];
+        int []vx = new int[100];
+        int []vy = new int[100];
+        Label[] labels = new Label[100];
 
         int score = 100;
         int muki = 0;
         public Form1()
         {
             InitializeComponent();
-
-            for(int i=0;i<4;i++)
+            for (int ii = 0; ii < 3; ii++)
+            {
+                MessageBox.Show("" + ii);
+            }
+            for (int i=0;i<100;i++)
             {
                 vx[i] = rand.Next(-20, 21);
                 vy[i] = rand.Next(-20, 21);
+
+                labels[i] = new Label();
+                labels[i].AutoSize = true;
+                labels[i].Text = "★";
+                Controls.Add(labels[i]);
+                labels[i].Left = rand.Next(ClientSize.Width - labels[i].Width);
+                labels[i].Top = rand.Next(ClientSize.Height - labels[i].Height);
             }
 
+            
             label1.Left = rand.Next(ClientSize.Width - label1.Width);
             label1.Top = rand.Next(ClientSize.Height - label1.Height);
             label2.Left = rand.Next(ClientSize.Width - label2.Width);
@@ -62,16 +74,43 @@ namespace ArrayPractice
                 score++;
             else
                 score--;*/
+            score--;
             scoreLabel.Text = $"Score {score:000}";
 
-            label1.Left += vx[0];
+            Point fpos = PointToClient(MousePosition);
+
+            for (int i = 0; i<100;i++)
+            {
+                labels[i].Left += vx[i];
+                labels[i].Top += vy[i];
+            }
+            for (int i = 0; i < 100; i++)
+            {
+                if (labels[i].Left < 0)
+                {
+                    vx[i] = Math.Abs(vx[i]);
+                }
+                if (labels[i].Top < 0)
+                {
+                    vy[i] = Math.Abs(vy[i]);
+                }
+                if (label1.Right > ClientSize.Width)
+                {
+                    vx[i] = -Math.Abs(vx[i]);
+                }
+                if (label1.Bottom > ClientSize.Height)
+                {
+                    vy[i] = -Math.Abs(vy[i]);
+                }
+            }
+            /*label1.Left += vx[0];
             label1.Top += vy[0];
             label2.Left += vx[1];
             label2.Top += vy[1];
             label3.Left += vx[2];
-            label3.Top += vy[2];
+            label3.Top += vy[2];*/
 
-            if (label1.Left < 0)
+            /*if (label1.Left < 0)
             {
                 vx[0] = Math.Abs(vx[0]);
             }
@@ -118,10 +157,20 @@ namespace ArrayPractice
             if (label3.Bottom > ClientSize.Height)
             {
                 vy[2] = -Math.Abs(vy[2]);
+            }*/
+
+            //Point fpos = PointToClient(MousePosition);
+            
+            for (int i = 0;i<100;i++)
+            {
+                if ((fpos.X >= labels[i].Left)
+                && (fpos.X < labels[i].Right)
+                && (fpos.Y >= labels[i].Top)
+                && (fpos.Y < labels[i].Bottom))
+                {
+                    labels[i].Visible = false;
+                }
             }
-
-            Point fpos = PointToClient(MousePosition);
-
             /*if ((fpos.X >= label1.Left)
                 && (fpos.X < label1.Right)
                 && (fpos.Y >= label1.Top)
@@ -143,7 +192,7 @@ namespace ArrayPractice
             {
                 timer1.Enabled = false;
             }*/
-            if ((fpos.X >= label1.Left)
+            /*if ((fpos.X >= label1.Left)
                 && (fpos.X < label1.Right)
                 && (fpos.Y >= label1.Top)
                 && (fpos.Y < label1.Bottom))
@@ -169,7 +218,7 @@ namespace ArrayPractice
                 &&!(label3.Visible))
             {
                 timer1.Enabled = false;
-            }
+            }*/
             
         }
         private void label1_Click(object sender, EventArgs e)
