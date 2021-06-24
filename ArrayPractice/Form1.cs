@@ -13,9 +13,10 @@ namespace ArrayPractice
     public partial class Form1 : Form
     {
         static Random rand = new Random();
-        int []vx = new int[100];
-        int []vy = new int[100];
-        Label[] labels = new Label[100];
+        const int LabelMax = 10;
+        int []vx = new int[LabelMax];
+        int []vy = new int[LabelMax];
+        Label[] labels = new Label[LabelMax];
 
         int score = 100;
         int muki = 0;
@@ -26,10 +27,10 @@ namespace ArrayPractice
             {
                 //MessageBox.Show("" + ii);
             }
-            for (int i=0;i<100;i++)
+            for (int i=0;i< LabelMax; i++)
             {
-                vx[i] = rand.Next(-20, 21);
-                vy[i] = rand.Next(-20, 21);
+                vx[i] = rand.Next(-10, 11);
+                vy[i] = rand.Next(-10, 11);
 
                 labels[i] = new Label();
                 labels[i].AutoSize = true;
@@ -79,12 +80,12 @@ namespace ArrayPractice
 
             Point fpos = PointToClient(MousePosition);
 
-            for (int i = 0; i<100;i++)
+            for (int i = 0; i< LabelMax; i++)
             {
                 labels[i].Left += vx[i];
                 labels[i].Top += vy[i];
             }
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < LabelMax; i++)
             {
                 if (labels[i].Left < 0)
                 {
@@ -161,7 +162,7 @@ namespace ArrayPractice
 
             //Point fpos = PointToClient(MousePosition);
             
-            for (int i = 0;i<100;i++)
+            for (int i = 0;i< LabelMax; i++)
             {
                 if ((fpos.X >= labels[i].Left)
                 && (fpos.X < labels[i].Right)
@@ -221,7 +222,7 @@ namespace ArrayPractice
             }*/
             if(score<0)
             {
-                for(int i =0;i<100;i++)
+                for(int i =0;i<LabelMax;i++)
                 {
                     labels[i].Visible = false;
                 }
