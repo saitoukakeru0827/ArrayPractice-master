@@ -24,7 +24,7 @@ namespace ArrayPractice
             InitializeComponent();
             for (int ii = 0; ii < 3; ii++)
             {
-                MessageBox.Show("" + ii);
+                //MessageBox.Show("" + ii);
             }
             for (int i=0;i<100;i++)
             {
@@ -40,12 +40,12 @@ namespace ArrayPractice
             }
 
             
-            label1.Left = rand.Next(ClientSize.Width - label1.Width);
+            /*label1.Left = rand.Next(ClientSize.Width - label1.Width);
             label1.Top = rand.Next(ClientSize.Height - label1.Height);
             label2.Left = rand.Next(ClientSize.Width - label2.Width);
             label2.Top = rand.Next(ClientSize.Height - label2.Height);
             label3.Left = rand.Next(ClientSize.Width - label3.Width);
-            label3.Top = rand.Next(ClientSize.Height - label3.Height);
+            label3.Top = rand.Next(ClientSize.Height - label3.Height);*/
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -94,11 +94,11 @@ namespace ArrayPractice
                 {
                     vy[i] = Math.Abs(vy[i]);
                 }
-                if (label1.Right > ClientSize.Width)
+                if (labels[i].Right > ClientSize.Width)
                 {
                     vx[i] = -Math.Abs(vx[i]);
                 }
-                if (label1.Bottom > ClientSize.Height)
+                if (labels[i].Bottom > ClientSize.Height)
                 {
                     vy[i] = -Math.Abs(vy[i]);
                 }
@@ -219,7 +219,14 @@ namespace ArrayPractice
             {
                 timer1.Enabled = false;
             }*/
-            
+            if(score<0)
+            {
+                for(int i =0;i<100;i++)
+                {
+                    labels[i].Visible = false;
+                }
+                timer1.Enabled = false;
+            }
         }
         private void label1_Click(object sender, EventArgs e)
         {
