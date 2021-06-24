@@ -20,7 +20,7 @@ namespace ArrayPractice
         int vx3 = rand.Next(-20, 21);
         int vy3 = rand.Next(-20, 21);
         int score = 100;
-
+        int muki = 0;
         public Form1()
         {
             InitializeComponent();
@@ -35,7 +35,30 @@ namespace ArrayPractice
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            score--;
+            if (score < 0)
+            {
+                muki = 1;
+                vx1 = rand.Next(-20, 21);
+                vy1 = rand.Next(-20, 21);
+                vx2 = rand.Next(-20, 21);
+                vy2 = rand.Next(-20, 21);
+                vx3 = rand.Next(-20, 21);
+                vy3 = rand.Next(-20, 21);
+            } 
+            if (score > 100)
+            {
+                muki = 0;
+                vx1 = rand.Next(-20, 21);
+                vy1 = rand.Next(-20, 21);
+                vx2 = rand.Next(-20, 21);
+                vy2 = rand.Next(-20, 21);
+                vx3 = rand.Next(-20, 21);
+                vy3 = rand.Next(-20, 21);
+            }
+            if (muki == 1)
+                score++;
+            else
+                score--;
             scoreLabel.Text = $"Score {score:000}";
 
             label1.Left += vx1;
@@ -144,6 +167,7 @@ namespace ArrayPractice
             {
                 timer1.Enabled = false;
             }
+            
         }
         private void label1_Click(object sender, EventArgs e)
         {
