@@ -138,6 +138,12 @@ namespace ArrayPractice
             {
                 label3.Visible = false;
             }
+            if (!(label1.Visible)
+                &&!(label2.Visible)
+                &&!(label3.Visible))
+            {
+                timer1.Enabled = false;
+            }
         }
         private void label1_Click(object sender, EventArgs e)
         {
